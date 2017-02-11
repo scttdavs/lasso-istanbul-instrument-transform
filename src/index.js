@@ -1,5 +1,4 @@
 "use strict";
-/* eslint-disable no-param-reassign */
 const path = require('path');
 const istanbul = require('istanbul-lib-instrument');
 const resolve = require('lasso-resolve-from');
@@ -15,10 +14,11 @@ module.exports = {
         }
 
         extensions = extensions.reduce((lookup, ext) => {
+            let formattedExt = ext;
             if (ext.charAt(0) !== '.') {
-                ext = `.${ext}`;
+                formattedExt = `.${ext}`;
             }
-            lookup[ext] = true;
+            lookup[formattedExt] = true;
             return lookup;
         }, {});
 
@@ -26,7 +26,7 @@ module.exports = {
             const filename = lassoContext.filename;
 
             if (!filename || !extensions.hasOwnProperty(path.extname(filename))) {
-                // This shouldn't be the case
+                // This shouldn't be the case (directory with a file extension in name)
                 return code;
             }
 
@@ -34,10 +34,7 @@ module.exports = {
                      || (filename.includes('test/') && !transformConfig.allowTests)
                      || filename.includes('coverage/')
                      || filename.includes('benchmark/')
-            ) {
-                console.log("YEP");
-                return code;
-            }
+            ) return code;
 
             const instrumenter = istanbul.createInstrumenter({});
 

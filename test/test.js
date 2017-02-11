@@ -5,11 +5,9 @@ const fs = require("fs");
 const lassoIstanbulInstrument = require("../");
 const expect = require("chai").expect;
 
-const readFile = (name, fileName) => {
-    return fs.readFileSync(path.join(__dirname, name, fileName), {
+const readFile = (name, fileName) => fs.readFileSync(path.join(__dirname, name, fileName), {
         encoding: 'utf8'
     }).trim(); // trim is needed for removing any extraneous whitespace for comparison
-};
 
 describe("Istanbul Instrument Transform Suite", () => {
     fs.readdirSync(__dirname)
