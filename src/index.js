@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /* eslint-disable no-param-reassign */
 const path = require('path');
 const istanbul = require('istanbul-lib-instrument');
@@ -31,10 +31,13 @@ module.exports = {
             }
 
             if (!filename || filename.includes('node_modules/')
-                     || filename.includes('test/')
+                     || (filename.includes('test/') && !transformConfig.allowTests)
                      || filename.includes('coverage/')
                      || filename.includes('benchmark/')
-            ) return code;
+            ) {
+                console.log("YEP");
+                return code;
+            }
 
             const instrumenter = istanbul.createInstrumenter({});
 
