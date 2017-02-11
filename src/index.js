@@ -26,7 +26,7 @@ module.exports = {
             const filename = lassoContext.filename;
 
             if (!filename || !extensions.hasOwnProperty(path.extname(filename))) {
-                // This shouldn't be the case (directory with a file extension in name)
+                // This shouldn't be the case (no filename or file missing any of the expected extensions)
                 return code;
             }
 
