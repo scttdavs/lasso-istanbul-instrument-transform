@@ -6,9 +6,7 @@
   "scripts": {
     "test": "npm run mocha && npm run lint",
     "lint": "eslint .",
-    "mocha": "mocha --timeout 5000 --reporter spec",
-    "cover": "rm -rf ./coverage && istanbul cover _mocha -- --timeout 5000 -R spec ./test/*.js",
-    "coverreport": "open ./coverage/lcov-report/index.html"
+    "mocha": "mocha --timeout 5000 --reporter spec"
   },
   "repository": {
     "type": "git",
