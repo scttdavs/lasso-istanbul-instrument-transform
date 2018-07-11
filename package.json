@@ -1,6 +1,6 @@
 {
   "name": "lasso-istanbul-instrument-transform",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Lasso.js transform that instruments code for istanbul",
   "main": "src/index.js",
   "scripts": {
