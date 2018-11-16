@@ -36,10 +36,14 @@ module.exports = {
                      || filename.includes('benchmark/')
             ) return code;
 
-            const instrumenter = istanbul.createInstrumenter({});
+            const actualFile = resolve(__dirname, filename);
+            if (!actualFile) {
+                // should only happen for virtual dependencies, known ahead of time, but not yet compiled/created
+                return code;
+            }
 
-            const actualFile = resolve(__dirname, filename).path;
-            const instrumentedCode = instrumenter.instrumentSync(code, actualFile);
+            const instrumenter = istanbul.createInstrumenter({});
+            const instrumentedCode = instrumenter.instrumentSync(code, actualFile.path);
 
             return instrumentedCode;
         };
